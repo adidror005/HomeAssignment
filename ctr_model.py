@@ -116,7 +116,7 @@ n_folds = 6
 full_df = full_df.reset_index(drop=True)
 
 splitter = KFold(n_splits=n_folds, shuffle=True, random_state=13)
-for i, (train_indices, test_indices) in enumerate(splitter.split(full_df)):
+for i, (train_indices, test_indices) in enumerate(splitter.split(train):
     print(f'Fold {i}')
     x_train = full_df.loc[train_indices, :].drop('is_click', axis=1)
     y_train = full_df['is_click'][train_indices].astype(int)
