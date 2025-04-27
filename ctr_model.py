@@ -58,8 +58,8 @@ def add_time_features(df):
     df['months_since_reg'] = ((df.created_at - df.user_reg_date).dt.days / 30.2).round(1)
     df['hour_diff_from_last_purchase'] = (df.created_at.dt.hour - df.previous_order_date.dt.hour).round(1)
     df['days_since_last_purchase'] = (df.created_at - df.previous_order_date).dt.days
-    df['is_weekend'] = df.apply(is_weekend, axis=1)
-    df = df.drop(['created_at','previous_order_date','user_reg_date'], axis=1)
+    df['is_weekend'] = df['day'].isin(['sat', 'sun'])
+    df = df.drop(['previous_order_date','user_reg_date'], axis=1).set_index("created_at")
     return df
 
 full_df = add_time_features(full_df)
