@@ -12,7 +12,7 @@ import xgboost as xgb
 
 full_df = pd.read_csv('listings_dataset.csv', index_col=0)
 
-temp = full_df.isnull().mean()
+temp = full_df.isnull().mean().sort_values()
 temp[temp > 0].plot(kind='barh')
 plt.title('Normalized missing data count per column')
 plt.xlim(0, 1)
