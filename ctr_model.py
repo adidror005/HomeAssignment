@@ -23,7 +23,7 @@ dates_columns = ['created_at', 'user_reg_date', 'previous_order_date']
 binary_columns = ['is_click', 'is_filtered', 'is_user_buyer','is_seller_onlie']
 categorical_columns = list(set(full_df.columns) - set(numeric_columns) - set(dates_columns) - set(binary_columns))
 
-full_df['continent'] = full_df['user_timezone'].apply(lambda x: x.split('/')[0].lower())
+full_df['continent'] = full_df['user_timezone'].str.split("/").str[0].str.lower()
 vc = full_df.continent.value_counts()
 vc.plot(kind='bar')
 
