@@ -32,7 +32,7 @@ temp = full_df.groupby('gig_sc_id').agg(
     group_size=('gig_sc_id', 'size')
 )
 temp['sc_id_ctr'] = temp.num_clicks / temp.group_size
-full_df = full_df.join(temp, on='gig_sc_id').drop(['num_clicks','group_size'], axis=1)
+full_df = full_df.join(temp, on='gig_sc_id',how='left').drop(['num_clicks','group_size'], axis=1)
 
 for col in numeric_columns:
     bins=1000
